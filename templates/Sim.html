@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Server Allocation Simulation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Sim.css') }}">
+</head>
+<body>
+
+  <main class="page">
+
+    <section class="hero">
+      <span class="badge">Cloud Simulation Dashboard</span>
+      <h1>Cloud Server Allocation Simulation</h1>
+      <p>Analyze server demand, idle servers, revenue, and net profit in a clean and modern layout.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Simulation Inputs</h2>
+        <p>Enter the required values below and run the simulation.</p>
+      </div>
+
+      <form id="simulationForm">
+        <div class="grid">
+          <input type="number" id="capacity" placeholder="Daily Server Capacity" required>
+          <input type="number" id="cost_per_server" placeholder="Cost per Server" required>
+          <input type="number" id="selling_price" placeholder="Selling Price per Server" required>
+          <input type="number" id="salvage_value" placeholder="Salvage Value" required>
+          <input type="number" id="good_pct" placeholder="Good %" required>
+          <input type="number" id="fair_pct" placeholder="Fair %" required>
+          <input type="number" id="poor_pct" placeholder="Poor %" required>
+          <input type="number" id="num_days" placeholder="Number of Days" required>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit">Run Simulation</button>
+          <button type="button" id="downloadExcelBtn" style="display:none;">Download Excel</button>
+        </div>
+      </form>
+
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="card summary-card">
+      <div id="summary"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Data Visualization</h2>
+        <p>Charts will be displayed here after running the simulation.</p>
+      </div>
+
+      <div class="charts">
+        <div class="chart-box"><canvas id="netProfitChart"></canvas></div>
+        <div class="chart-box"><canvas id="cumulativeProfitChart"></canvas></div>
+        <div class="chart-box full"><canvas id="demandRentedChart"></canvas></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div id="results"></div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='Sim.js') }}"></script>
+</body>
+</html>
